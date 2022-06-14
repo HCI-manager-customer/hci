@@ -2,6 +2,10 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import '../../components/side_menu.dart';
 import '../../addons/responsive_layout.dart';
+import '../drug/drug_view.dart';
+import '../order/order.dart';
+import 'components/pre_control.dart';
+import 'components/pre_panel.dart';
 
 class PrescriptionViewScreen extends StatefulWidget {
   const PrescriptionViewScreen({Key? key}) : super(key: key);
@@ -47,8 +51,62 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                 )
               : null,
         ),
-        body: const Center(
-          child: Text('Prescription View'),
+        body: Row(
+          children: [
+            Expanded(
+              flex: 3,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      SortDateBox(),
+                      SortBox(),
+                    ],
+                  ),
+                  const SearchBox(),
+                  const SizedBox(height: 20),
+                  const Expanded(child: PrescriptPanel()),
+                  SizedBox(
+                    width: 100,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                          ),
+                          child: const Text(
+                            '1',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        const Text(
+                          '4',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  )
+                ],
+              ),
+            ),
+            const Expanded(
+              flex: 2,
+              child: PrescriptionControll(),
+            ),
+          ],
         ),
       ),
     );

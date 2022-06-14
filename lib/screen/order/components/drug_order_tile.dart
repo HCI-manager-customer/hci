@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../models/drug.dart';
+import '../../../../models/drug.dart';
 
 class OrderDurgTile extends ConsumerStatefulWidget {
   const OrderDurgTile(this.drug);

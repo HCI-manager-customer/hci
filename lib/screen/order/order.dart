@@ -1,7 +1,7 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:hci_manager/components/side_menu.dart';
-import 'package:hci_manager/screen/order/order_control.dart';
-import 'package:hci_manager/screen/order/order_panel.dart';
+import 'package:hci_manager/screen/order/components/order_control.dart';
+import 'package:hci_manager/screen/order/components/order_panel.dart';
 
 import '../../addons/responsive_layout.dart';
 import '../drug/drug_view.dart';
@@ -174,6 +174,7 @@ class SearchBox extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50), border: Border.all()),
         child: const TextField(
+          style: TextStyle(color: Colors.black),
           decoration: InputDecoration(
               hintText: 'Search', hintStyle: TextStyle(color: Colors.black)),
         ),

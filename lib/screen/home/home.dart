@@ -5,6 +5,7 @@ import 'package:hci_manager/components/side_menu.dart';
 import 'package:hci_manager/addons/responsive_layout.dart';
 import 'package:hci_manager/screen/drug/drug_view.dart';
 import 'package:hci_manager/screen/prescription/prescription.dart';
+import 'package:hci_manager/screen/transfer/transfer.dart';
 import 'package:local_session_timeout/local_session_timeout.dart';
 
 import '../../provider/general_provider.dart';
@@ -76,6 +77,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         return const OrderViewScreen(key: Key('OrderView'));
       case MenuItems.prescrip:
         return const PrescriptionViewScreen(key: Key('PresView'));
+      case MenuItems.transfer:
+        return const TransferScreen(key: Key('Transfer'));
       default:
         return const DrugViewScreen(key: Key('DrugView'));
     }

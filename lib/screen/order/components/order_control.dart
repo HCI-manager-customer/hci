@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-import '../../models/drug.dart';
+import '../../../models/drug.dart';
 import 'drug_order_tile.dart';
 
 class OrderControl extends StatelessWidget {
