@@ -64,7 +64,12 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                       SortBox(),
                     ],
                   ),
-                  const SearchBox(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: SearchBox(
+                      key: UniqueKey(),
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   const Expanded(child: PrescriptPanel()),
                   SizedBox(

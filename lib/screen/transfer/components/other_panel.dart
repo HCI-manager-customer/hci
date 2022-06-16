@@ -1,7 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
+import '../../../models/drug.dart';
 import '../../order/order.dart';
+import 'drug_rev_tile.dart';
 
 class OtherPanel extends StatelessWidget {
   const OtherPanel({Key? key}) : super(key: key);
@@ -9,11 +14,80 @@ class OtherPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance.collection('drugs');
+
     return Container(
       child: Column(
-        children: const [
-          SelectPharmacy(),
-          SearchBox(),
+        children: [
+          const SelectPharmacy(),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: SearchBox(
+              key: UniqueKey(),
+            ),
+          ),
+          StreamBuilder<QuerySnapshot>(
+            builder: (context, snapshot) {
+              if (snapshot.connectionState != ConnectionState.active) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
+              } else {
+                int count = 0;
+                return SizedBox(
+                  width: 500,
+                  child: ListView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: snapshot.data!.docs.sublist(5, 8).map((e) {
+                      return AnimationConfiguration.staggeredList(
+                        position: count++,
+                        duration: const Duration(milliseconds: 500),
+                        child: SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: DrugRevTile(
+                                Drug.fromMap(e.data() as Map<String, dynamic>)),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                );
+              }
+            },
+            stream: db.snapshots(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                height: 70,
+                width: 150,
+                child: RaisedButton(
+                  color: Colors.red,
+                  shape: const StadiumBorder(),
+                  onPressed: () {},
+                  child: const Text(
+                    'Reset Selection',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 70,
+                width: 150,
+                child: RaisedButton(
+                  color: Colors.green,
+                  shape: const StadiumBorder(),
+                  child: const Text(
+                    'Parcel Ready',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -53,44 +53,6 @@ class _TransferScreenState extends State<TransferScreen> {
           children: const [
             Expanded(
               flex: 1,
-              // child: Column(
-              //   children: const [
-              //     SizedBox(height: 20),
-              //     // const Expanded(child: OrderPanel()),
-              //     // SizedBox(
-              //     //   width: 100,
-              //     //   child: Row(
-              //     //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //     //     children: [
-              //     //       Container(
-              //     //         decoration: BoxDecoration(
-              //     //           border: Border.all(),
-              //     //         ),
-              //     //         child: const Text(
-              //     //           '1',
-              //     //           style: TextStyle(color: Colors.black),
-              //     //         ),
-              //     //       ),
-              //     //       const Text(
-              //     //         '2',
-              //     //         style: TextStyle(color: Colors.black),
-              //     //       ),
-              //     //       const Text(
-              //     //         '3',
-              //     //         style: TextStyle(color: Colors.black),
-              //     //       ),
-              //     //       const Text(
-              //     //         '4',
-              //     //         style: TextStyle(color: Colors.black),
-              //     //       ),
-              //     //     ],
-              //     //   ),
-              //     // ),
-              //     SizedBox(
-              //       height: 60,
-              //     )
-              //   ],
-              // ),
               child: Center(
                 child: MyPanel(),
               ),

@@ -15,11 +15,14 @@ class MyPanel extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          const Text(
-            'Your Current Stock',
-            style: TextStyle(color: Colors.grey, fontSize: 20),
+          const Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              'Your Current Stock',
+              style: TextStyle(color: Colors.grey, fontSize: 20),
+            ),
           ),
-          const SearchBox(),
+          SearchBox(key: UniqueKey()),
           StreamBuilder<QuerySnapshot>(
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.active) {

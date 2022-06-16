@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../models/drug.dart';
 
 class DrugRevTile extends StatelessWidget {
-  const DrugRevTile({Key? key, required this.drug}) : super(key: key);
+  const DrugRevTile(this.drug);
 
   final Drug drug;
 
@@ -34,16 +34,6 @@ class DrugRevTile extends StatelessWidget {
                   drug.price.toStringAsFixed(3),
                   style: const TextStyle(color: Colors.grey),
                 ),
-                const Spacer(),
-                Text(
-                  '$ran count',
-                  style: const TextStyle(color: Colors.grey),
-                ),
-                const Spacer(),
-                Text(
-                  'Container: ${drug.container}',
-                  style: const TextStyle(color: Colors.grey),
-                ),
               ],
             ),
             trailing: SizedBox(
@@ -51,12 +41,14 @@ class DrugRevTile extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     width: 50,
                     height: 30,
                     child: TextField(
-                      style: TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
+                      textAlign: TextAlign.center,
+                      controller: TextEditingController(text: '$ran'),
+                      style: const TextStyle(color: Colors.black),
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(
                           //Outline border type for TextFeild

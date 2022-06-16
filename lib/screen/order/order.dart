@@ -63,7 +63,10 @@ class _OrderViewScreenState extends State<OrderViewScreen> {
                       SortBox(),
                     ],
                   ),
-                  const SearchBox(),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: SearchBox(),
+                  ),
                   const SizedBox(height: 20),
                   const Expanded(child: OrderPanel()),
                   SizedBox(
@@ -165,19 +168,16 @@ class SearchBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        width: 500,
-        height: 50,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50), border: Border.all()),
-        child: const TextField(
-          style: TextStyle(color: Colors.black),
-          decoration: InputDecoration(
-              hintText: 'Search', hintStyle: TextStyle(color: Colors.black)),
-        ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      width: 500,
+      height: 50,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50), border: Border.all()),
+      child: const TextField(
+        style: TextStyle(color: Colors.black),
+        decoration: InputDecoration(
+            hintText: 'Search', hintStyle: TextStyle(color: Colors.black)),
       ),
     );
   }
