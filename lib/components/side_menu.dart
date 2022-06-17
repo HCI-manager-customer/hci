@@ -133,38 +133,6 @@ class SideMenu extends StatelessWidget {
         const SizedBox(height: kDefaultPadding),
         addSearchBtnGroup(context, ref),
         if (!Responsive.isTablet(context)) const Spacer(),
-        // SideMenuItem(
-        //   press: () => ref.read(ScreenProvider.notifier).state = MenuItems.drug,
-        //   title: "Drugs",
-        //   icon: MenuItems.drug.icon,
-        //   isActive: ref.watch(ScreenProvider) == MenuItems.drug,
-        //   itemCount: 3,
-        // ),
-        // SideMenuItem(
-        //   press: () {
-        //     ref.read(ScreenProvider.notifier).state = MenuItems.orders;
-        //   },
-        //   title: "Orders",
-        //   icon: MenuItems.orders.icon,
-        //   isActive: ref.watch(ScreenProvider) == MenuItems.orders,
-        //   itemCount: 0,
-        // ),
-        // SideMenuItem(
-        //   press: () =>
-        //       ref.read(ScreenProvider.notifier).state = MenuItems.prescrip,
-        //   title: "Prescriptions",
-        //   icon: MenuItems.prescrip.icon,
-        //   isActive: ref.watch(ScreenProvider) == MenuItems.prescrip,
-        //   itemCount: 0,
-        // ),
-        // SideMenuItem(
-        //   press: () =>
-        //       ref.read(ScreenProvider.notifier).state = MenuItems.prescrip,
-        //   title: "Transfer Drug",
-        //   icon: MenuItems.transfer.icon,
-        //   isActive: ref.watch(ScreenProvider) == MenuItems.prescrip,
-        //   itemCount: 0,
-        // ),
         ...MenuItems.all.map(groupMenu).toList(),
         if (!Responsive.isTablet(context)) const Spacer(),
         SideMenuItem(

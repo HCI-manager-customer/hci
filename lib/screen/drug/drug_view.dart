@@ -2,6 +2,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hci_manager/models/drug.dart';
 
+import '../../components/search.dart';
 import '../../components/side_menu.dart';
 import '../../addons/responsive_layout.dart';
 import 'components/add_drug.dart';
@@ -17,6 +18,35 @@ class DrugViewScreen extends ConsumerStatefulWidget {
 }
 
 class _DrugViewScreenState extends ConsumerState<DrugViewScreen> {
+  void showSearchDialog(Size size, BuildContext context, var list) {
+    showGeneralDialog(
+      context: context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: const Duration(milliseconds: 500),
+      pageBuilder: (_, __, ___) {
+        return const SearchDialog();
+      },
+      transitionBuilder: (_, anim, __, child) {
+        Tween<Offset> tween;
+        if (anim.status == AnimationStatus.reverse) {
+          tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+        } else {
+          tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(anim),
+          child: FadeTransition(
+            opacity: anim,
+            child: child,
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final drawerKey = ref.watch(DrawerKeyProvider);
@@ -27,6 +57,12 @@ class _DrugViewScreenState extends ConsumerState<DrugViewScreen> {
     return NeumorphicApp(
       color: Colors.white,
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showSearchDialog(MediaQuery.of(context).size, context, []);
+          },
+          child: const Icon(Icons.search),
+        ),
         drawer: Responsive.isDesktop(context)
             ? null
             : SideMenu(Responsive.isTablet(context) ? sizeTablet : sizePhone),
@@ -96,7 +132,14 @@ class _DrugViewScreenState extends ConsumerState<DrugViewScreen> {
                             SortBox(),
                           ],
                         ),
-                        const Expanded(child: DrugPanel()),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          child: SearchBox(),
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.7,
+                            child: const DrugPanel()),
+                        const Spacer(),
                         SizedBox(
                           width: 100,
                           child: Row(
@@ -127,7 +170,7 @@ class _DrugViewScreenState extends ConsumerState<DrugViewScreen> {
                           ),
                         ),
                         const SizedBox(
-                          height: 60,
+                          height: 20,
                         )
                       ],
                     ),
@@ -140,7 +183,18 @@ class _DrugViewScreenState extends ConsumerState<DrugViewScreen> {
               );
             }
             if (Responsive.isTablet(context)) {
-              return const DrugPanel();
+              return Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      SortDateBox(),
+                      SortBox(),
+                    ],
+                  ),
+                  const DrugPanel(),
+                ],
+              );
             }
             if (Responsive.isMobile(context)) {}
             return const DrugPanel();
