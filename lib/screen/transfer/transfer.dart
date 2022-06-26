@@ -32,8 +32,9 @@ class _TransferScreenState extends State<TransferScreen> {
             style: TextStyle(color: Colors.grey),
           ),
           centerTitle: true,
-          leading: Responsive.isTablet(context)
-              ? NeumorphicButton(
+          leading: Responsive.isDesktop(context)
+              ? null
+              : NeumorphicButton(
                   style: NeumorphicStyle(
                       shape: NeumorphicShape.concave,
                       boxShape: NeumorphicBoxShape.roundRect(
@@ -46,25 +47,42 @@ class _TransferScreenState extends State<TransferScreen> {
                       size: 30,
                     ),
                   ),
-                )
-              : null,
+                ),
         ),
-        body: Row(
-          children: const [
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: MyPanel(),
+        body: LayoutBuilder(builder: ((context, constraints) {
+          if (Responsive.isDesktop(context)) {
+            return Row(
+              children: const [
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: MyPanel(),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: OtherPanel(),
+                  ),
+                ),
+              ],
+            );
+          } else if (Responsive.isMobile(context)) {
+            return const Center(
+              child: Text(
+                'No Mobile view yet',
+                style: TextStyle(color: Colors.grey),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: OtherPanel(),
+            );
+          } else {
+            return const Center(
+              child: Text(
+                'No Tablet view yet',
+                style: TextStyle(color: Colors.grey),
               ),
-            ),
-          ],
-        ),
+            );
+          }
+        })),
       ),
     );
   }
