@@ -29,7 +29,7 @@ class OrderTile extends StatelessWidget {
               style: const TextStyle(color: Colors.blue),
             ),
             subtitle: Text(
-              '$price - $count item',
+              '$price VND - $count item',
               style: const TextStyle(color: Colors.black),
             ),
             trailing: Column(
@@ -39,7 +39,7 @@ class OrderTile extends StatelessWidget {
                   'Status: $status',
                   style: const TextStyle(color: Colors.black),
                 ),
-                TextButton(onPressed: () {}, child: Text('Distric $d'))
+                TextButton(onPressed: () {}, child: Text('Adr: Distric $d'))
               ],
             ),
           ),

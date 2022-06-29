@@ -68,7 +68,7 @@ class PrescriptionControll extends StatelessWidget {
                   color: Colors.blue,
                   shape: const StadiumBorder(),
                   child: const Text(
-                    'Parcel Shipped',
+                    'Make Order',
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {},

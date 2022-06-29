@@ -49,7 +49,7 @@ class _DrugTileState extends ConsumerState<DrugTile> {
               children: [
                 if (widget.drug.id != 'D24')
                   Text(
-                    widget.drug.price.toStringAsFixed(3),
+                    '${widget.drug.price.toStringAsFixed(3)} VND',
                     style: const TextStyle(color: Colors.black),
                   ),
                 if (widget.drug.id != 'D24')
@@ -107,17 +107,17 @@ class _DrugTileState extends ConsumerState<DrugTile> {
               subtitle: Row(
                 children: [
                   Text(
-                    widget.drug.price.toStringAsFixed(3),
+                    '${widget.drug.price.toStringAsFixed(3)} VND',
                     style: const TextStyle(color: Colors.grey),
                   ),
                   const Spacer(),
                   Text(
-                    '$ran count',
+                    '$ran in stock',
                     style: const TextStyle(color: Colors.grey),
                   ),
                   const Spacer(),
                   Text(
-                    'Container: ${widget.drug.container}',
+                    'Con: ${widget.drug.container}',
                     style: const TextStyle(color: Colors.grey),
                   ),
                 ],

@@ -31,18 +31,17 @@ class PreTitle extends StatelessWidget {
               style: const TextStyle(color: Colors.blue),
             ),
             subtitle: Text(
-              date,
+              'sent: $date',
               style: const TextStyle(color: Colors.black),
             ),
-            trailing: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  note,
-                  style: const TextStyle(color: Colors.black),
-                ),
-                TextButton(onPressed: () {}, child: const Text('Click to View'))
-              ],
+            trailing: SizedBox(
+              // width: 50,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(onPressed: () {}, child: const Text('View'))
+                ],
+              ),
             ),
           ),
         ),

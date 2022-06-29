@@ -137,7 +137,7 @@ class _DrugViewScreenState extends ConsumerState<DrugViewScreen> {
                           child: SearchBox(),
                         ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.7,
+                            height: MediaQuery.of(context).size.height * 0.65,
                             child: const DrugPanel()),
                         const Spacer(),
                         SizedBox(
