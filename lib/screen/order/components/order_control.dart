@@ -73,6 +73,8 @@ class _OrderControlState extends ConsumerState<ConsumerStatefulWidget> {
         final data = snapshot.data!.data();
         if (data!['status'] == 'Cancelled') {
           isCancelled = true;
+        } else {
+          isCancelled = false;
         }
         return Neumorphic(
           style: const NeumorphicStyle(

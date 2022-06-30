@@ -7,7 +7,7 @@ class PreScripController extends GetxController {
   static PreScripController instance = Get.find();
   Rx<List<Prescription>> prescList = Rx<List<Prescription>>([]);
 
-  List<Prescription> get prescription => prescList.value;
+  List<Prescription> get prescriptions => prescList.value;
 
   @override
   void onInit() {
