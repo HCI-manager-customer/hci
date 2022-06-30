@@ -1,6 +1,7 @@
 import 'package:concentric_transition/page_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:hci_manager/components/side_menu.dart';
 import 'package:hci_manager/addons/responsive_layout.dart';
 import 'package:hci_manager/screen/drug/drug_view.dart';
@@ -8,6 +9,8 @@ import 'package:hci_manager/screen/prescription/prescription.dart';
 import 'package:hci_manager/screen/transfer/transfer.dart';
 import 'package:local_session_timeout/local_session_timeout.dart';
 
+import '../../controllers/order_controller.dart';
+import '../../controllers/prescription_controller.dart';
 import '../../provider/general_provider.dart';
 import '../lockscreen/lockscreen.dart';
 import '../order/order.dart';
@@ -21,6 +24,19 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   int duration = 500;
+  @override
+  void initState() {
+    super.initState();
+    OrderController orderController = Get.put(OrderController());
+    PreScripController preScriptController = Get.put(PreScripController());
+
+    Get.delete<OrderController>();
+    Get.delete<PreScripController>();
+
+    orderController = Get.put(OrderController());
+    preScriptController = Get.put(PreScripController());
+  }
+
   @override
   Widget build(BuildContext context) {
     final sessionConfig = SessionConfig(

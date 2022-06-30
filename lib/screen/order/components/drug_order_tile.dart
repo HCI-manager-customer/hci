@@ -1,20 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
-import '../../../../models/drug.dart';
+import '../../../models/cart.dart';
 
-class OrderDurgTile extends ConsumerStatefulWidget {
-  const OrderDurgTile(this.drug);
+class OrderDurgTile extends StatelessWidget {
+  OrderDurgTile(this.cart);
 
-  final Drug drug;
+  final Cart cart;
+  var formatter = NumberFormat('#,###');
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _OrderDurgTileState();
-}
-
-class _OrderDurgTileState extends ConsumerState<OrderDurgTile> {
   var color = Colors.white;
   //return random number from range
   int ran = 1 + (Random().nextInt(10 - 1));
@@ -30,15 +26,15 @@ class _OrderDurgTileState extends ConsumerState<OrderDurgTile> {
         child: Center(
           child: ListTile(
             hoverColor: Colors.red,
-            leading: Image.network(widget.drug.imgUrl, width: 100),
+            leading: Image.network(cart.drug.imgUrl, width: 100),
             title: Text(
-              widget.drug.title,
+              cart.drug.title,
               style: const TextStyle(color: Colors.black),
             ),
             subtitle: Row(
               children: [
                 Text(
-                  widget.drug.price.toStringAsFixed(3),
+                  '${formatter.format(cart.drug.price)},000 VND',
                   style: const TextStyle(color: Colors.grey),
                 ),
                 const Spacer(),
@@ -48,7 +44,7 @@ class _OrderDurgTileState extends ConsumerState<OrderDurgTile> {
                 ),
                 const Spacer(),
                 Text(
-                  'Container: ${widget.drug.container}',
+                  'Container: ${cart.drug.container}',
                   style: const TextStyle(color: Colors.grey),
                 ),
               ],

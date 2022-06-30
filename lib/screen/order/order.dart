@@ -1,10 +1,14 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hci_manager/components/side_menu.dart';
 import 'package:hci_manager/screen/order/components/order_control.dart';
-import 'package:hci_manager/screen/order/components/order_panel.dart';
 
 import '../../addons/responsive_layout.dart';
+import '../../models/order.dart';
 import '../drug/drug_view.dart';
+import 'components/order_panel.dart';
+
+final orderLoadProvider = StateProvider<Order>(((ref) => dummyOrder));
 
 class OrderViewScreen extends StatefulWidget {
   const OrderViewScreen({Key? key}) : super(key: key);
