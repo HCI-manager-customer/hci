@@ -20,7 +20,7 @@ class OrderTile extends StatefulWidget {
 class _OrderTileState extends State<OrderTile> {
   var color = Colors.white;
   var formatter = NumberFormat('#,###');
-
+//
   Color doneColor() {
     if (widget.order.status == 'Done') {
       return Colors.green;
