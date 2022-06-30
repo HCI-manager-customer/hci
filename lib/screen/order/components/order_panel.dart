@@ -32,7 +32,7 @@ class OrderPanel extends StatelessWidget {
                 //     : 3;
                 // double childAspect = isDrawerOpen ? 4 : 4;
                 int crossAxi = 2;
-                double childAspect = 4;
+                double childAspect = 2.5;
                 int count = 0;
 
                 return SizedBox(

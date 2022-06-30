@@ -77,7 +77,7 @@ class _OrderTileState extends State<OrderTile> {
                       style: TextStyle(color: doneColor()),
                     ),
                     Text(
-                      'Order Date: ${DateFormat('dd-MM-yyyy').format(widget.order.date)}',
+                      'Date: ${DateFormat('dd-MM-yyyy').format(widget.order.date)}',
                       style: const TextStyle(color: Colors.black),
                     ),
                     TextButton(
