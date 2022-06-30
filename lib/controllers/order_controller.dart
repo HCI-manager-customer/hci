@@ -26,4 +26,8 @@ class OrderService {
           return f;
         }).toList());
   }
+
+  Future orderStatus(String st, String id) async {
+    await _order.doc(id).update({'status': st});
+  }
 }
