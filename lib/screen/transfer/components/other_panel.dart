@@ -15,81 +15,90 @@ class OtherPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance.collection('drugs');
 
-    return Container(
-      child: Column(
-        children: [
-          const SelectPharmacy(),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: SearchBox(
-              key: UniqueKey(),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            'Transfer Destination',
+            style: TextStyle(color: Colors.grey, fontSize: 20),
           ),
-          StreamBuilder<QuerySnapshot>(
-            builder: (context, snapshot) {
-              if (snapshot.connectionState != ConnectionState.active) {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                );
-              } else {
-                int count = 0;
-                return SizedBox(
-                  width: 500,
-                  child: ListView(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: snapshot.data!.docs.sublist(5, 8).map((e) {
-                      return AnimationConfiguration.staggeredList(
-                        position: count++,
-                        duration: const Duration(milliseconds: 500),
-                        child: SlideAnimation(
-                          verticalOffset: 50.0,
-                          child: FadeInAnimation(
-                            child: DrugRevTile(
-                                Drug.fromMap(e.data() as Map<String, dynamic>)),
-                          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: SelectPharmacy(),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(0),
+          child: SearchBox(
+            key: UniqueKey(),
+          ),
+        ),
+        StreamBuilder<QuerySnapshot>(
+          builder: (context, snapshot) {
+            if (snapshot.connectionState != ConnectionState.active) {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(),
+              );
+            } else {
+              int count = 0;
+              return SizedBox(
+                width: 500,
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: snapshot.data!.docs.sublist(5, 8).map((e) {
+                    return AnimationConfiguration.staggeredList(
+                      position: count++,
+                      duration: const Duration(milliseconds: 500),
+                      child: SlideAnimation(
+                        verticalOffset: 50.0,
+                        child: FadeInAnimation(
+                          child: DrugRevTile(
+                              Drug.fromMap(e.data() as Map<String, dynamic>)),
                         ),
-                      );
-                    }).toList(),
-                  ),
-                );
-              }
-            },
-            stream: db.snapshots(),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 70,
-                width: 150,
-                child: RaisedButton(
-                  color: Colors.red,
-                  shape: const StadiumBorder(),
-                  onPressed: () {},
-                  child: const Text(
-                    'Reset Selection',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              );
+            }
+          },
+          stream: db.snapshots(),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              height: 70,
+              width: 150,
+              child: RaisedButton(
+                color: Colors.red,
+                shape: const StadiumBorder(),
+                onPressed: () {},
+                child: const Text(
+                  'Reset Selection',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-              SizedBox(
-                height: 70,
-                width: 150,
-                child: RaisedButton(
-                  color: Colors.green,
-                  shape: const StadiumBorder(),
-                  child: const Text(
-                    'Parcel Ready',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {},
+            ),
+            SizedBox(
+              height: 70,
+              width: 150,
+              child: RaisedButton(
+                color: Colors.green,
+                shape: const StadiumBorder(),
+                child: const Text(
+                  'Parcel Ready',
+                  style: TextStyle(color: Colors.white),
                 ),
+                onPressed: () {},
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -106,6 +115,7 @@ class _SelectPharmacyState extends State<SelectPharmacy> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
           'Select Pharmacy:  ',

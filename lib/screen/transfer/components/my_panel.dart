@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:hci_manager/screen/drug/drug_view.dart';
 import 'package:hci_manager/screen/order/order.dart';
 
 import '../../../models/drug.dart';
@@ -20,6 +21,10 @@ class MyPanel extends StatelessWidget {
             'Your Current Stock',
             style: TextStyle(color: Colors.grey, fontSize: 20),
           ),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(8),
+          child: SortBox(),
         ),
         SearchBox(key: UniqueKey()),
         StreamBuilder<QuerySnapshot>(
