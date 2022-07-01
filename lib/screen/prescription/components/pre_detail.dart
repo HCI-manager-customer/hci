@@ -39,8 +39,8 @@ class _DetailPanelState extends ConsumerState<ConsumerStatefulWidget> {
         ),
         CachedNetworkImage(
           imageUrl: preS.Imgurl,
-          height: 600,
-          width: 500,
+          height: 400,
+          width: 350,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
