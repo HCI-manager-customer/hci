@@ -210,41 +210,33 @@ class SortDateBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text(
-          'Sort by Date:   ',
+    return Container(
+      width: 200,
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all()),
+      child: DropdownButton(
+        dropdownColor: Colors.white,
+        isExpanded: true,
+        style: const TextStyle(color: Colors.black),
+        hint: const Text(
+          'Sort by Date:',
           style: TextStyle(color: Colors.black),
         ),
-        Container(
-          width: 200,
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all()),
-          child: DropdownButton(
-            dropdownColor: Colors.white,
-            isExpanded: true,
-            style: const TextStyle(color: Colors.black),
-            hint: const Text(
-              'Sort',
-              style: TextStyle(color: Colors.black),
-            ),
-            onChanged: (v) {},
-            items: const [
-              DropdownMenuItem(
-                value: 'up',
-                child: Text('Ascending'),
-              ),
-              DropdownMenuItem(
-                value: 'down',
-                child: Text('Descending '),
-              ),
-            ],
+        onChanged: (v) {},
+        items: const [
+          DropdownMenuItem(
+            value: 'up',
+            child: Text('Ascending'),
           ),
-        ),
-      ],
+          DropdownMenuItem(
+            value: 'down',
+            child: Text('Descending '),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -254,41 +246,33 @@ class SortBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text(
-          'Sort by Name:   ',
+    return Container(
+      width: 200,
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      decoration: BoxDecoration(
+          color: Colors.white54,
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all()),
+      child: DropdownButton(
+        dropdownColor: Colors.white,
+        isExpanded: true,
+        style: const TextStyle(color: Colors.black),
+        hint: const Text(
+          'Sort by Name:',
           style: TextStyle(color: Colors.black),
         ),
-        Container(
-          width: 200,
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          decoration: BoxDecoration(
-              color: Colors.white54,
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all()),
-          child: DropdownButton(
-            dropdownColor: Colors.white,
-            isExpanded: true,
-            style: const TextStyle(color: Colors.black),
-            hint: const Text(
-              'Sort',
-              style: TextStyle(color: Colors.black),
-            ),
-            onChanged: (v) {},
-            items: const [
-              DropdownMenuItem(
-                value: 'up',
-                child: Text('Ascending'),
-              ),
-              DropdownMenuItem(
-                value: 'down',
-                child: Text('Descending'),
-              ),
-            ],
+        onChanged: (v) {},
+        items: const [
+          DropdownMenuItem(
+            value: 'up',
+            child: Text('Ascending'),
           ),
-        ),
-      ],
+          DropdownMenuItem(
+            value: 'down',
+            child: Text('Descending'),
+          ),
+        ],
+      ),
     );
   }
 }

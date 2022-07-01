@@ -14,6 +14,18 @@ class DrugController extends GetxController {
     drugList.bindStream(DrugService().drugStream());
     super.onInit();
   }
+
+  int getTotalPrice(List<String> drugId) {
+    int total = 0;
+    for (var id in drugId) {
+      total += getDrug(id).price.toInt();
+    }
+    return total;
+  }
+
+  Drug getDrug(String id) {
+    return drugs.firstWhere((element) => element.id == id);
+  }
 }
 
 class DrugService {

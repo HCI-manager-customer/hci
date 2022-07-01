@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hci_manager/models/pharmacyUser.dart';
 
+import '../models/note.dart';
+
 Future<PharmacyUser> getUserByMail(String mail) async {
   return await FirebaseFirestore.instance
       .collection('users')
@@ -13,4 +15,35 @@ Future<PharmacyUser> getUserByMail(String mail) async {
       return user;
     },
   );
+}
+
+void sendMsgChat(String idChat, String msg) {
+  try {
+    FirebaseFirestore.instance.collection('prescription').doc(idChat).update({
+      "note":
+          FieldValue.arrayUnion([Note(msg: msg, time: DateTime.now()).toMap()])
+    });
+  } on Exception catch (e) {
+    print(e);
+  }
+}
+
+void addToCart(String id, String idDrug) {
+  try {
+    FirebaseFirestore.instance.collection('prescription').doc(id).update({
+      "medicines": FieldValue.arrayUnion([idDrug])
+    });
+  } on Exception catch (e) {
+    print(e);
+  }
+}
+
+void removeFromCart(String id, String idDrug) {
+  try {
+    FirebaseFirestore.instance.collection('prescription').doc(id).update({
+      "medicines": FieldValue.arrayRemove([idDrug])
+    });
+  } on Exception catch (e) {
+    print(e);
+  }
 }

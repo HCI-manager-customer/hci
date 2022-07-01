@@ -116,3 +116,13 @@ class Prescription {
         note.hashCode;
   }
 }
+
+Prescription dummyPres = Prescription(
+    idChat: '',
+    mail: '',
+    name: '',
+    addr: '',
+    Imgurl: '',
+    status: '',
+    medicines: [],
+    note: []);

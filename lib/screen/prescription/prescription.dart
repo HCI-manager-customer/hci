@@ -1,11 +1,18 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hci_manager/models/prescription.dart';
 
 import '../../components/side_menu.dart';
 import '../../addons/responsive_layout.dart';
 import '../drug/drug_view.dart';
 import '../order/order.dart';
 import 'components/pre_control.dart';
+import 'components/pre_detail.dart';
 import 'components/pre_panel.dart';
+
+final preLoadProvider = StateProvider<Prescription>(((ref) => dummyPres));
+final preControllProvider =
+    StateProvider<Widget>(((ref) => const DetailPanel()));
 
 class PrescriptionViewScreen extends StatefulWidget {
   const PrescriptionViewScreen({Key? key}) : super(key: key);

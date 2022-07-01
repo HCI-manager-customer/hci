@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 import 'firebase_options.dart';
 import 'screen/home/home.dart';
@@ -20,18 +21,18 @@ final navKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return NeumorphicApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      navigatorKey: navKey,
-      materialTheme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        snackBarTheme: const SnackBarThemeData(
-          contentTextStyle: TextStyle(fontFamily: "Raleway"),
+    return GetMaterialApp(
+      home: NeumorphicApp(
+        navigatorKey: navKey,
+        materialTheme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          snackBarTheme: const SnackBarThemeData(
+            contentTextStyle: TextStyle(fontFamily: "Raleway"),
+          ),
         ),
+        home: const MainScreen(),
       ),
-      home: const MainScreen(),
     );
   }
 }

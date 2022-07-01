@@ -81,10 +81,16 @@ class _OrderTileState extends State<OrderTile> {
                       style: const TextStyle(color: Colors.black),
                     ),
                     TextButton(
-                        onPressed: () {
-                          searchMap();
-                        },
-                        child: const Text('Click to view map')),
+                      onPressed: () {
+                        searchMap();
+                      },
+                      style: TextButton.styleFrom(
+                        minimumSize: Size.zero,
+                        padding: EdgeInsets.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: const Text('Click to view map'),
+                    ),
                   ],
                 ),
               ),

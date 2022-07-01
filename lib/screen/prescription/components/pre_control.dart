@@ -1,82 +1,54 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hci_manager/screen/prescription/components/pre_detail.dart';
 
-class PrescriptionControll extends StatelessWidget {
+import '../prescription.dart';
+
+class PrescriptionControll extends ConsumerStatefulWidget {
   const PrescriptionControll({Key? key}) : super(key: key);
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _PrescriptionControllState();
+}
+
+class _PrescriptionControllState extends ConsumerState<ConsumerStatefulWidget> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(),
+    final preS = ref.watch(preLoadProvider);
+    final panel = ref.watch(preControllProvider);
+    if (preS.name.length < 2) {
+      return Center(
+        child: Text(
+          'Select an prescription Bill',
+          style: GoogleFonts.kanit(color: Colors.grey, fontSize: 30),
+        ),
+      );
+    }
+    return Neumorphic(
+      style: const NeumorphicStyle(
+        depth: 5,
+        color: Colors.white,
+        lightSource: LightSource.right,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          const Text(
-            'Cao Chanh Duc',
-            style: TextStyle(color: Colors.blue, fontSize: 25),
-          ),
-          const Text(
-            'Address: 123 ABC District ABC, TP.HCM',
-            style: TextStyle(color: Colors.blue, fontSize: 25),
-          ),
-          const Text(
-            'Date: May 27, 2021',
-            style: TextStyle(color: Colors.blue, fontSize: 20),
-          ),
-          Image.network(
-            'https://4.bp.blogspot.com/-_kBJT0h6Spg/UdbTldpNbdI/AAAAAAAAAWA/18wS5P6bDY4/s1600/vio-2.jpg',
-            height: 300,
-            width: 300,
-            fit: BoxFit.fill,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 70,
-                width: 150,
-                child: RaisedButton(
-                  color: Colors.red,
-                  shape: const StadiumBorder(),
-                  onPressed: () {},
-                  child: const Text(
-                    'Accpect Order',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 70,
-                width: 150,
-                child: RaisedButton(
-                  color: Colors.green,
-                  shape: const StadiumBorder(),
-                  child: const Text(
-                    'Call',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-              SizedBox(
-                height: 70,
-                width: 150,
-                child: RaisedButton(
-                  color: Colors.blue,
-                  shape: const StadiumBorder(),
-                  child: const Text(
-                    'Make Order',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-            ],
-          ),
-        ],
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 500),
+        child: Column(
+          children: [
+            IconButton(
+                onPressed: () {
+                  if (panel != const DetailPanel()) {
+                    ref.read(preControllProvider.notifier).state =
+                        const DetailPanel();
+                  }
+                },
+                icon: const Icon(Icons.arrow_back)),
+            Expanded(child: panel),
+          ],
+        ),
       ),
     );
   }

@@ -9,6 +9,7 @@ import 'package:hci_manager/screen/prescription/prescription.dart';
 import 'package:hci_manager/screen/transfer/transfer.dart';
 import 'package:local_session_timeout/local_session_timeout.dart';
 
+import '../../controllers/drug_controller.dart';
 import '../../controllers/order_controller.dart';
 import '../../controllers/prescription_controller.dart';
 import '../../provider/general_provider.dart';
@@ -29,6 +30,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.initState();
     OrderController orderController = Get.put(OrderController());
     PreScripController preScriptController = Get.put(PreScripController());
+    DrugController drugController = Get.put(DrugController());
 
     Get.delete<OrderController>();
     Get.delete<PreScripController>();
