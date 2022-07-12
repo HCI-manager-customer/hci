@@ -22,52 +22,7 @@ class _DrugTileState extends ConsumerState<DrugTile> {
   int ran = 0 + (Random().nextInt(30 - 0));
   @override
   Widget build(BuildContext context) {
-    if (widget.drug.id == 'D24') {
-      return badWid(context);
-    }
     return goodWid(context);
-  }
-
-  Widget badWid(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.brown.shade200,
-            border: Border.all(),
-            borderRadius: BorderRadius.circular(20)),
-        child: Center(
-          child: ListTile(
-            hoverColor: Colors.red,
-            leading: Image.network(widget.drug.imgUrl, width: 100),
-            title: Text(
-              widget.drug.title,
-              style: const TextStyle(color: Colors.black),
-            ),
-            subtitle: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (widget.drug.id != 'D24')
-                  Text(
-                    '${widget.drug.price.toStringAsFixed(3)} VND',
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                if (widget.drug.id != 'D24')
-                  Text(
-                    'Container: ${widget.drug.container}',
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                if (widget.drug.id == 'D24')
-                  const Text(
-                    'No more stock',
-                    style: TextStyle(color: Colors.red),
-                  ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
   InkWell goodWid(BuildContext context) {
@@ -99,7 +54,8 @@ class _DrugTileState extends ConsumerState<DrugTile> {
           child: Center(
             child: ListTile(
               hoverColor: Colors.red,
-              leading: Image.network(widget.drug.imgUrl, width: 100),
+              leading: Image.network(widget.drug.imgUrl,
+                  width: Responsive.isMobile(context) ? 70 : 100),
               title: Text(
                 widget.drug.title,
                 style: const TextStyle(color: Colors.black),

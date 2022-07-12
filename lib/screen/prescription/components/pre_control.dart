@@ -39,13 +39,14 @@ class _PrescriptionControllState extends ConsumerState<ConsumerStatefulWidget> {
         child: Column(
           children: [
             IconButton(
-                onPressed: () {
-                  if (panel != const DetailPanel()) {
-                    ref.read(preControllProvider.notifier).state =
-                        const DetailPanel();
-                  }
-                },
-                icon: const Icon(Icons.arrow_back)),
+              onPressed: () {
+                if (panel != const DetailPanel()) {
+                  ref.read(preControllProvider.notifier).state =
+                      const DetailPanel();
+                }
+              },
+              icon: const Icon(Icons.arrow_back),
+            ),
             Expanded(child: panel),
           ],
         ),

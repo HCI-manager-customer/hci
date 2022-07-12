@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,8 +10,6 @@ class OrderDurgTile extends StatelessWidget {
   var formatter = NumberFormat('#,###');
 
   var color = Colors.white;
-  //return random number from range
-  int ran = 1 + (Random().nextInt(10 - 1));
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,7 +35,7 @@ class OrderDurgTile extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '$ran count',
+                  '${cart.quantity} count',
                   style: const TextStyle(color: Colors.grey),
                 ),
                 const Spacer(),

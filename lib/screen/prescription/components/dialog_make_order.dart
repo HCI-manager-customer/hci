@@ -65,7 +65,7 @@ class MakeOrder extends ConsumerWidget {
                           return ListView(
                             children: snapshot.data!
                                 .map(
-                                  (e) => MakeOrderDrugTile(preS.idChat, e),
+                                  (e) => MakeOrderDrugTile(preS.id, e),
                                 )
                                 .toList(),
                           );
@@ -79,7 +79,7 @@ class MakeOrder extends ConsumerWidget {
               child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                 stream: FirebaseFirestore.instance
                     .collection('prescription')
-                    .doc(preS.idChat)
+                    .doc(preS.id)
                     .snapshots(),
                 builder: (_, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -139,7 +139,7 @@ class MakeOrder extends ConsumerWidget {
                                 ),
                                 trailing: IconButton(
                                   onPressed: () {
-                                    removeFromCart(preS.idChat, med.id);
+                                    removeFromCart(preS.id, med.id);
                                   },
                                   icon: const Icon(Icons.delete),
                                 ),

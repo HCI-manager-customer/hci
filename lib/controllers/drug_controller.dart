@@ -8,7 +8,6 @@ class DrugController extends GetxController {
   Rx<List<Drug>> drugList = Rx<List<Drug>>([]);
 
   List<Drug> get drugs => drugList.value;
-
   @override
   void onInit() {
     drugList.bindStream(DrugService().drugStream());

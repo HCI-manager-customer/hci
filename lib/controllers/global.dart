@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hci_manager/models/pharmacyUser.dart';
 
@@ -17,12 +19,26 @@ Future<PharmacyUser> getUserByMail(String mail) async {
   );
 }
 
-void sendMsgChat(String idChat, String msg) {
+Future markAsFinish(String id) async {
+  final db = FirebaseFirestore.instance;
+  await db.collection('prescription').doc(id).update({"status": "FINISH"});
+}
+
+Future sendMsgChat(String idChat, String msg) async {
   try {
-    FirebaseFirestore.instance.collection('prescription').doc(idChat).update({
-      "note":
-          FieldValue.arrayUnion([Note(msg: msg, time: DateTime.now()).toMap()])
-    });
+    Note note = Note(
+      msg: msg,
+      time: DateTime.now(),
+      mail: 'customer@cs.com',
+      name: 'Customer Support',
+    );
+    await FirebaseFirestore.instance
+        .collection('prescription')
+        .doc(idChat)
+        .collection('note')
+        .add(
+          note.toMap(),
+        );
   } on Exception catch (e) {
     print(e);
   }
@@ -34,7 +50,7 @@ void addToCart(String id, String idDrug) {
       "medicines": FieldValue.arrayUnion([idDrug])
     });
   } on Exception catch (e) {
-    print(e);
+    log(e.toString());
   }
 }
 
@@ -44,6 +60,6 @@ void removeFromCart(String id, String idDrug) {
       "medicines": FieldValue.arrayRemove([idDrug])
     });
   } on Exception catch (e) {
-    print(e);
+    log(e.toString());
   }
 }

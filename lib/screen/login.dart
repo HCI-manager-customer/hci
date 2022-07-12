@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../main.dart';
@@ -76,6 +79,7 @@ class LoginScreen extends ConsumerWidget {
         user = userCredential.user!;
         saveUser();
         navKey.currentState!.popUntil((route) => route.isFirst);
+        Get.back();
       } catch (e) {}
     } else {
       try {
@@ -107,7 +111,7 @@ class LoginScreen extends ConsumerWidget {
         saveUser();
         navKey.currentState!.popUntil((route) => route.isFirst);
       } on FirebaseAuthException catch (e) {
-        print(e);
+        log(e.toString());
       }
     }
   }

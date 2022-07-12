@@ -10,7 +10,7 @@ class Order {
   String id;
   PharmacyUser user;
   List<Cart> listCart;
-  double price;
+  num price;
   String status;
   DateTime date;
   Order({
@@ -26,7 +26,7 @@ class Order {
     String? id,
     PharmacyUser? user,
     List<Cart>? listCart,
-    double? price,
+    num? price,
     String? status,
     DateTime? date,
   }) {
@@ -60,7 +60,7 @@ class Order {
           (x) => Cart.fromMap(x as Map<String, dynamic>),
         ),
       ),
-      price: map['price'] as double,
+      price: map['price'] as num,
       status: map['status'] as String,
       date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
     );

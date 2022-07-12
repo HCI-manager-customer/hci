@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../controllers/prescription_controller.dart';
 import '../prescription.dart';
 import 'dialog_make_order.dart';
+import 'package:hci_manager/models/prescription.dart';
 import 'pre_tile.dart';
 
 class PrescriptPanel extends StatelessWidget {
@@ -58,7 +59,7 @@ class PrescriptPanel extends StatelessWidget {
                                     child: ListTile(
                                       leading: CircleAvatar(
                                         backgroundImage: NetworkImage(
-                                          e.Imgurl,
+                                          e.imgurl,
                                         ),
                                       ),
                                       title: Text(
@@ -76,39 +77,7 @@ class PrescriptPanel extends StatelessWidget {
                                       trailing: TextButton(
                                         child: const Text('Make Order'),
                                         onPressed: () {
-                                          showGeneralDialog(
-                                            context: context,
-                                            barrierLabel: "Barrier",
-                                            barrierDismissible: true,
-                                            barrierColor:
-                                                Colors.black.withOpacity(0.5),
-                                            transitionDuration: const Duration(
-                                                milliseconds: 400),
-                                            pageBuilder: (_, __, ___) {
-                                              return MakeOrder(e);
-                                            },
-                                            transitionBuilder:
-                                                (_, anim, __, child) {
-                                              Tween<Offset> tween;
-                                              if (anim.status ==
-                                                  AnimationStatus.reverse) {
-                                                tween = Tween(
-                                                    begin: const Offset(-1, 0),
-                                                    end: Offset.zero);
-                                              } else {
-                                                tween = Tween(
-                                                    begin: const Offset(1, 0),
-                                                    end: Offset.zero);
-                                              }
-                                              return SlideTransition(
-                                                position: tween.animate(anim),
-                                                child: FadeTransition(
-                                                  opacity: anim,
-                                                  child: child,
-                                                ),
-                                              );
-                                            },
-                                          );
+                                          makeOrder(context, e);
                                         },
                                       ),
                                     ),
@@ -126,6 +95,34 @@ class PrescriptPanel extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  Future makeOrder(BuildContext context, Prescription e) {
+    return showGeneralDialog(
+      context: context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: const Duration(milliseconds: 400),
+      pageBuilder: (_, __, ___) {
+        return MakeOrder(e);
+      },
+      transitionBuilder: (_, anim, __, child) {
+        Tween<Offset> tween;
+        if (anim.status == AnimationStatus.reverse) {
+          tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+        } else {
+          tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+        }
+        return SlideTransition(
+          position: tween.animate(anim),
+          child: FadeTransition(
+            opacity: anim,
+            child: child,
+          ),
+        );
+      },
     );
   }
 

@@ -24,17 +24,9 @@ class OrderPanel extends StatelessWidget {
               );
             } else {
               return Consumer(builder: (ctx, ref, _) {
-                // bool isDrawerOpen = ref.watch(isOpenAddDrugProvider);
-                // int crossAxi = isDrawerOpen
-                //     ? Responsive.isMobile(context)
-                //         ? 1
-                //         : 2
-                //     : 3;
-                // double childAspect = isDrawerOpen ? 4 : 4;
-                int crossAxi = 2;
-                double childAspect = 2.5;
+                int crossAxi = Get.width < 1600 ? 1 : 2;
+                double childAspect = Get.width < 1600 ? 5 : 2.5;
                 int count = 0;
-
                 return SizedBox(
                   child: GridView(
                     controller: ScrollController(),

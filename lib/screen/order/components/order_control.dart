@@ -114,22 +114,25 @@ class _OrderControlState extends ConsumerState<ConsumerStatefulWidget> {
                   ),
                 ],
               ),
-
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blue.shade300),
-                      borderRadius: BorderRadius.circular(25)),
-                  height: 500,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: order.listCart.length,
-                    itemBuilder: (cx, i) => OrderDurgTile(order.listCart[i]),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blue.shade300),
+                        borderRadius: BorderRadius.circular(25)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: order.listCart.length,
+                        itemBuilder: (cx, i) =>
+                            OrderDurgTile(order.listCart[i]),
+                      ),
+                    ),
                   ),
                 ),
               ),
-              //3 ElevatedButton in a row with 3 different colors
               isCancelled
                   ? const Center(
                       child: Text(
