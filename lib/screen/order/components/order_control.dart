@@ -150,7 +150,8 @@ class _OrderControlState extends ConsumerState<ConsumerStatefulWidget> {
                             color: Colors.red,
                             shape: const StadiumBorder(),
                             onPressed: () {
-                              OrderService().orderStatus('NewOrder', order.id);
+                              OrderService()
+                                  .orderStatus('Accept Order', order.id);
                             },
                             child: const Text(
                               'Accpect Order',
