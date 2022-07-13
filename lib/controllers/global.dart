@@ -24,9 +24,10 @@ Future markAsFinish(String id) async {
   await db.collection('prescription').doc(id).update({"status": "FINISH"});
 }
 
-Future sendMsgChat(String idChat, String msg) async {
+Future sendMsgChat(String idChat, String msg, String patient) async {
   try {
     Note note = Note(
+      patient: patient,
       msg: msg,
       time: DateTime.now(),
       mail: 'customer@cs.com',

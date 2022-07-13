@@ -71,7 +71,7 @@ class ChatBody extends StatelessWidget {
                             backgroundColor: Colors.red,
                             colorText: Colors.white);
                       } else {
-                        sendMsgChat(preS.id, textCtl.text.trim());
+                        sendMsgChat(preS.id, textCtl.text.trim(), preS.mail);
                         textCtl.clear();
                       }
                     },
