@@ -35,27 +35,24 @@ class DrugPanel extends StatelessWidget {
                     : 3;
                 double childAspect = isDrawerOpen ? 4 : 4;
                 int count = 0;
-                return SizedBox(
-                  //height: MediaQuery.of(context).size.height * 0.8,
-                  child: GridView(
-                    controller: ScrollController(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: crossAxi,
-                      childAspectRatio: childAspect,
-                    ),
-                    children: drugs.drugs.map((e) {
-                      return AnimationConfiguration.staggeredList(
-                        position: count++,
-                        duration: const Duration(milliseconds: 500),
-                        child: SlideAnimation(
-                          verticalOffset: 50.0,
-                          child: FadeInAnimation(
-                            child: DrugTile(e),
-                          ),
-                        ),
-                      );
-                    }).toList(),
+                return GridView(
+                  controller: ScrollController(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxi,
+                    childAspectRatio: childAspect,
                   ),
+                  children: drugs.drugs.map((e) {
+                    return AnimationConfiguration.staggeredList(
+                      position: count++,
+                      duration: const Duration(milliseconds: 500),
+                      child: SlideAnimation(
+                        verticalOffset: 50.0,
+                        child: FadeInAnimation(
+                          child: DrugTile(e),
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 );
               });
             }

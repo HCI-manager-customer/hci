@@ -136,47 +136,14 @@ class _DrugViewScreenState extends ConsumerState<DrugViewScreen> {
                           padding: EdgeInsets.symmetric(vertical: 15),
                           child: SearchBox(),
                         ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.65,
-                            child: const DrugPanel()),
-                        const Spacer(),
-                        SizedBox(
-                          width: 100,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(),
-                                ),
-                                child: const Text(
-                                  '1',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                              ),
-                              const Text(
-                                '2',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              const Text(
-                                '3',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              const Text(
-                                '4',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                            ],
-                          ),
+                        const Expanded(
+                          child: DrugPanel(),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        )
                       ],
                     ),
                   ),
                   const Expanded(
-                    flex: 0,
+                    flex: 1,
                     child: AddDrug(),
                   ),
                 ],

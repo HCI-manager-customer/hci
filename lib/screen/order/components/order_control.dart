@@ -93,9 +93,18 @@ class _OrderControlState extends ConsumerState<ConsumerStatefulWidget> {
                 'Address: ${order.user.addr!}',
                 style: const TextStyle(color: Colors.blue, fontSize: 25),
               ),
-              Text(
-                doneOrder(data['status']),
-                style: const TextStyle(color: Colors.blue, fontSize: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    doneOrder(data['status']),
+                    style: const TextStyle(color: Colors.blue, fontSize: 20),
+                  ),
+                  Text(
+                    'Payment Method: ${order.method}',
+                    style: const TextStyle(color: Colors.blue, fontSize: 20),
+                  ),
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
