@@ -15,4 +15,5 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-Visit: https://hci-manager-customer.github.io/hci/
+Manager: https://hci-manager-customer.github.io/hci/
+Customer: https://thevalkdokk.github.io/pharmacy_web/#/
